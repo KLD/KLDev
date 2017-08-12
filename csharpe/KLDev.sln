@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstProject", "FirstProject\FirstProject.csproj", "{7AD729BE-1B28-4934-9291-9F30B4B81BA1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YouTube", "YouTube", "{29ADF17F-958E-4BBA-9270-E5717866F61B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stream", "Stream", "{9ED5A806-1AB4-47A2-A139-F2ED6D27E3DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7AD729BE-1B28-4934-9291-9F30B4B81BA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AD729BE-1B28-4934-9291-9F30B4B81BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AD729BE-1B28-4934-9291-9F30B4B81BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AD729BE-1B28-4934-9291-9F30B4B81BA1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7AD729BE-1B28-4934-9291-9F30B4B81BA1} = {29ADF17F-958E-4BBA-9270-E5717866F61B}
+	EndGlobalSection
+EndGlobal
