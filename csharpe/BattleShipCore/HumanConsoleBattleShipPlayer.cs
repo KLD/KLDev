@@ -21,6 +21,8 @@ namespace BattleShipCore
                
             }
 
+            return new DirectedPoint();//remove me
+
         }
 
         public override Point PlayerTurn(int[][] enemyBoard, Point? prev = default(Point?))

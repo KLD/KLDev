@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BattleShipCore
 {
+    /// <summary>
+    /// Direction of a ship.
+    /// </summary>
     public enum Direction:int
     {
             East = 0, 

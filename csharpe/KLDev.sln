@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YouTube", "YouTube", "{29AD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stream", "Stream", "{9ED5A806-1AB4-47A2-A139-F2ED6D27E3DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleShipCore", "BattleShipCore\BattleShipCore.csproj", "{1FD24915-4844-440A-9697-BD18D149ED81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SukoduCore", "SukoduCore\SukoduCore.csproj", "{4DF9E0A4-8A04-40AA-8399-542CEF176476}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,11 +23,21 @@ Global
 		{7AD729BE-1B28-4934-9291-9F30B4B81BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AD729BE-1B28-4934-9291-9F30B4B81BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AD729BE-1B28-4934-9291-9F30B4B81BA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FD24915-4844-440A-9697-BD18D149ED81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FD24915-4844-440A-9697-BD18D149ED81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FD24915-4844-440A-9697-BD18D149ED81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FD24915-4844-440A-9697-BD18D149ED81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DF9E0A4-8A04-40AA-8399-542CEF176476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DF9E0A4-8A04-40AA-8399-542CEF176476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DF9E0A4-8A04-40AA-8399-542CEF176476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DF9E0A4-8A04-40AA-8399-542CEF176476}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7AD729BE-1B28-4934-9291-9F30B4B81BA1} = {29ADF17F-958E-4BBA-9270-E5717866F61B}
+		{1FD24915-4844-440A-9697-BD18D149ED81} = {9ED5A806-1AB4-47A2-A139-F2ED6D27E3DC}
+		{4DF9E0A4-8A04-40AA-8399-542CEF176476} = {9ED5A806-1AB4-47A2-A139-F2ED6D27E3DC}
 	EndGlobalSection
 EndGlobal
