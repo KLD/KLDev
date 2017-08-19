@@ -21,6 +21,8 @@ namespace BattleShipCore
             Height = hieght;
 
             Board = Enumerable.Repeat(Enumerable.Repeat(0, width).ToArray(), hieght).ToArray();
+
+            Ships = new List<Ship>(); 
         }
 
         public bool IsDead()

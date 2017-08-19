@@ -17,10 +17,8 @@ namespace SukoduCore
         //holds the number of errors 
         public int[][] ErrorBoard { private set; get; }
 
-
         private int Size;
         private int CellCount;
-
 
         public SudokuBoard(int boardSize = DEFAULT_BOARD_SIZE, int cellCount = DEFAULT_CELL_COUNT)
         {
@@ -30,7 +28,6 @@ namespace SukoduCore
             Board = Enumerable.Repeat(new int[Size], Size).ToArray();
             ErrorBoard = Enumerable.Repeat(new int[Size], Size).ToArray();
         }
-
 
         public void Set(int x, int y, int v)
         {
@@ -44,12 +41,20 @@ namespace SukoduCore
                 return; //throw Exception 
             }
 
+            if(Board[y][x] == v)
+            {
+                return; //duplicate number exeption 
+            }
+
+            VerifyErrors(x, y, v); 
+
             Board[y][x] = v;
 
-            CheckIndexDidWin(RowSelector, y);
-            CheckIndexDidWin(ColomnSelector, x);
-            CheckIndexDidWin(BoxSelector, x / CellCount + CellCount * (y / CellCount)); 
 
+
+            //CheckIndexDidWin(RowSelector, y);
+            //CheckIndexDidWin(ColomnSelector, x);
+            //CheckIndexDidWin(BoxSelector, GetBoxIndex(x,y)); 
         }
 
         public bool DidWin()
@@ -59,6 +64,39 @@ namespace SukoduCore
                 && CheckDidWin(ColomnSelector)  //colomn
                 && CheckDidWin(BoxSelector);
         }
+
+        private void VerifyErrors(int x, int y, int newValue)
+        {
+            //reset error 
+            ErrorBoard[y][x] = 0;
+
+            int prev = Board[y][x]; 
+
+            Func<int, bool> ErrorOut = n =>
+            {
+                Pair p = new Pair(Size, n);
+                int cellValue = Board[p.Y][p.X]; 
+
+                //don't compare yourself 
+                if(p.X == x && p.Y == y)
+                {
+                    return true; 
+                }
+
+                if(cellValue == prev)
+                {
+                    ErrorBoard[p.Y][p.X]--; 
+                }
+                else if(cellValue == newValue)
+                {
+                    ErrorBoard[p.Y][p.X]++;
+                    ErrorBoard[y][x]++;
+                }
+
+                return true;
+            };
+        }
+
 
         #region Selectors 
         private int RowSelector(int i, int e)
@@ -71,51 +109,68 @@ namespace SukoduCore
         }
         private int BoxSelector(int i,int e)
         {
-            return (e % CellCount) + (Size * (e / CellCount)) + (i * CellCount) + ((i / CellCount) * CellCount * Size)));
+            return (e % CellCount) + (Size * (e / CellCount)) + (i * CellCount) + ((i / CellCount) * CellCount * Size);
         }
         #endregion
-        private int SelectRow(int i, int e)
+
+        private int GetBoxIndex(int x, int y)
         {
-           return  (i * Size) + e;
+            return x / CellCount + CellCount * (y / CellCount); 
         }
 
         private bool CheckDidWin(Func<int, int, int> selector)
         {
-            for (int i = 0; i < Size; i++)
+            List<int> numbersFound = new List<int>(); //UniqueList
+
+            //TODO move to func
+            Func<int, bool> CheckUnique = n =>
             {
-                if (!CheckIndexDidWin(selector,i))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private bool CheckIndexDidWin(Func<int,int,int> selector, int i)
-        {
-            List<Pair> numbersFound = new List<Pair>(); //UniqueList
-
-            for (int e = 0; e < Size; e++)
-            {
-                int PairNumber = selector(i, e); 
-
-                Pair pair = new Pair(Size, PairNumber);
+                Pair pair = new Pair(Size, n);
 
                 int value = Board[pair.Y][pair.X];
 
-                foreach (Pair p in numbersFound)
+                foreach (int number in numbersFound)
                 {
-                    if (p.Y == value)
+                    if (number == value)
                     {
-                        return false; 
+                        return false;
                     }
                 }
 
-                numbersFound.Add(new Pair(Size, e, value)); // e => x, value -> y
+                numbersFound.Add(value); // e => x, value -> y
+                
+                //continue 
+                return true; 
+            }; 
+
+
+            for (int i = 0; i < Size; i++)
+            {
+                if (!CheckIndexDidWin(selector,i, CheckUnique))
+                {
+                    return false;
+                }
+                numbersFound.Clear(); 
+            }
+            return true;
+        }
+
+        private bool CheckIndexDidWin(Func<int,int,int> selector, int selectorIndex, Func<int,bool> itterator)
+        {
+            for (int i = 0; i < Size; i++)
+            {
+                int PairIndexNumber = selector(selectorIndex, i); 
+               
+                if(itterator(PairIndexNumber) == false)
+                {
+                    return false; 
+                }
             }
 
             return true;
         }
+
+
 
     }
 
@@ -165,6 +220,28 @@ namespace SukoduCore
             Y = n / size; 
         }
 
-    }
+        public new bool Equals(object x, object y)
+        {
+            if(!(x is Pair))
+            {
+                return false; 
+            }
 
+            if (!(y is Pair))
+            {
+                return false;
+            }
+
+            Pair pX = (Pair)x;
+            Pair pY = (Pair)y;
+
+
+            return pX.X == pY.X && pY.Y == pX.Y; 
+        }
+
+        public int GetHashCode(object obj)
+        {
+            return X.GetHashCode() & Y.GetHashCode(); 
+        }
+    }
 }
